@@ -30,4 +30,15 @@ exports.watch_list = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
+    // Handle a show all view
+exports.watch_view_all_Page = async function(req, res) {
+try{
+thewatch = await watch.find();
+res.render('watch', { title: 'watch Search Results', watchList: thewatch });
+}
+catch(err){
+res.status(500);
+res.send(`{"error": ${err}}`);
+}
+};
     

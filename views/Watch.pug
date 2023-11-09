@@ -3,7 +3,7 @@ extends layout
 block content
   
   h1= title
-  - let results=[{WatchId:"WI01",Watch_Price:50,Watch_Style :"Analog"},{WatchId:"WI98",Watch_Price:64,Watch_Style :"Digital"},{ WatchId: "WI192", Watch_Price: 89, Watch_Style: "Analog" }]
+  - let results=watchList
   div(class="container-fluid")
   div(class="row")
    each value,index in results
