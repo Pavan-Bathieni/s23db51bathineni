@@ -19,3 +19,15 @@ res.send('NOT IMPLEMENTED: watch delete DELETE ' + req.params.id);
 exports.watch_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: watch update PUT' + req.params.id);
 };
+// List of all watch
+exports.watch_list = async function(req, res) {
+    try{
+    thewatch = await watch.find();
+    res.send(thewatch);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
