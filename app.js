@@ -3,12 +3,53 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded")});
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var watchRouter = require('./routes/Watch');
 var boardRouter = require('./routes/board');
-var chooseRouter = require('./routes/choose')
+var chooseRouter = require('./routes/choose');
+var resourceRouter = require('./routes/resource');
+var watch = require("./models/watch");
+// We can seed the collection if needed on server start
+async function recreateDB(){
+// Delete everything
+await watch.deleteMany();
+let instance1 = new
+watch({WatchId:"WID987", Watch_Price:100,
+Watch_Style:"Digital"});
+let instance2 = new
+watch({WatchId:"WID456", Watch_Price:123,
+Watch_Style:"Analog"});
+let instance3 = new
+watch({WatchId:"WID006", Watch_Price:926,
+Watch_Style:"Analog-Digital"});
+instance1.save().then(doc=>{
+console.log("First object saved")}
+).catch(err=>{
+console.error(err)
+});
+instance2.save().then(doc=>{
+  console.log("Second object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+instance3.save().then(doc=>{
+console.log("Third object saved")}
+).catch(err=>{
+console.error(err)
+});
+}
+let reseed = true;
+if (reseed) {recreateDB();}
+
 var app = express();
 
 // view engine setup
@@ -26,6 +67,7 @@ app.use('/users', usersRouter);
 app.use('/Watch',watchRouter);
 app.use('/board',boardRouter);
 app.use('/choose', chooseRouter);
+app.use('/resource',resourceRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
