@@ -1,21 +1,24 @@
 extends layout
 block content
   h1= title
-  - let id = toShow._id
-  - let WatchId = toShow.WatchId
-  - let Watch_Price = toShow.Watch_Price
-  - let Watch_Style = toShow.Watch_Style
+  if (toShow == null)
+    h2 No instance to Show
+  else
+    - let id = toShow._id
+    - let WatchId = toShow.WatchId
+    - let Watch_Price = toShow.Watch_Price
+    - let Watch_Style = toShow.Watch_Style
 
-  div
-    div.row
-      div(class='watchAttr mr-3') ID is:
-      div #{id}
-    div.row
-      div(class='watchAttr mr-3') Watch Id is:
-      div #{WatchId}
-    div.row
-      div(class='watchAttr mr-3') Watch Price is:
-      div #{Watch_Price}
-    div.row
-      div(class='watchAttr mr-3') Watch Style is:
-      div #{Watch_Style}
+    div
+      div.row
+        div(class='watchAttr mr-3') ID is:
+        div #{id}
+      div.row
+        div(class='watchAttr mr-3') Watch Id is:
+        div #{WatchId}
+      div.row
+        div(class='watchAttr mr-3') Watch Price is:
+        div #{Watch_Price}
+      div.row
+        div(class='watchAttr mr-3') Watch Style is:
+        div #{Watch_Style}

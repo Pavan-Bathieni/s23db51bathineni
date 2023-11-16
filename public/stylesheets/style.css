@@ -9,5 +9,23 @@ a {
 .watchAttr {
   background-color: aquamarine;
   width: 120px;
-  }
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.row {
+  margin-bottom: 15px;
+}
+
+p {
+  display: block;
+  background-color: blanchedalmond;
+  margin-bottom: 5px;
+}
+
+button {
+  cursor: pointer;
+}
   
