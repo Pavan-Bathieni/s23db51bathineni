@@ -5,13 +5,18 @@ block content
   h1= title
   - let results=watchList
   div(class="container-fluid")
-  div(class="row")
+  div(class="row m-1")
    each value,index in results
-    div(class="col-sm-2" onclick=`buy(${index})`)  Watch ID:#{value.WatchId} , price : #{value.Watch_Price}, Style: #{value.Watch_Style}
+    - let destination = `dispatch(\"/watch/update?id=${value._id}\")`
+    div(class="col-sm-2 m-1" onclick=`buy(${index})`)  Watch ID:#{value.WatchId} , price : #{value.Watch_Price}, Style: #{value.Watch_Style}
+      button.btn( class="btn-primary ml-1", onclick= destination) Update
    script.
-    function buy(index)
-    {
+     function buy(index){
       alert(`Your purchased Item ${index}`)
     }
+    function dispatch(path){
+      window.location.href=path
+    }
+
   
 
