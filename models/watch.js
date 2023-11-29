@@ -6,7 +6,11 @@ Watch_Price: {
     min: 0,
     max: 5000
     },
-Watch_Style: String
+Watch_Style: {
+    type: String,
+    minlength: 3,
+    maxlength: 15
+} 
 })
 module.exports = mongoose.model("watch",
 watchSchema)
