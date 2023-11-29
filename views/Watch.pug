@@ -3,13 +3,19 @@ extends layout
 block content
   
   h1= title
+   - let buttonCreate = `dispatch(\"/watch/create")`
+  button.btn( class="btn-primary ml-1", onclick= buttonCreate) Create
   - let results=watchList
   div(class="container-fluid")
   div(class="row m-1")
    each value,index in results
     - let destination = `dispatch(\"/watch/update?id=${value._id}\")`
+    - let buttonDetail = `dispatch(\"/watch/detail?id=${value._id}\")`
+    - let buttonDelete = `dispatch(\"/watch/delete?id=${value._id}\")`
     div(class="col-sm-2 m-1" onclick=`buy(${index})`)  Watch ID:#{value.WatchId} , price : #{value.Watch_Price}, Style: #{value.Watch_Style}
       button.btn( class="btn-primary ml-1", onclick= destination) Update
+      button.btn( class="btn-primary ml-1", onclick= buttonDetail) Detail
+      button.btn( class="btn-primary ml-1", onclick= buttonDelete) Delete
    script.
      function buy(index){
       alert(`Your purchased Item ${index}`)
